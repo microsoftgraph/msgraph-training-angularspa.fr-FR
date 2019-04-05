@@ -1,31 +1,25 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-<span data-ttu-id="600c6-101">Dans cet exercice, vous allez créer une inscription de l'application Web Azure AD à l'aide du portail de registre d'applications (ARP).</span><span class="sxs-lookup"><span data-stu-id="600c6-101">In this exercise, you will create a new Azure AD web application registration using the Application Registry Portal (ARP).</span></span>
+<span data-ttu-id="c247b-101">Dans cet exercice, vous allez créer une inscription de l'application Web Azure AD à l'aide du centre d'administration Azure Active Directory.</span><span class="sxs-lookup"><span data-stu-id="c247b-101">In this exercise, you will create a new Azure AD web application registration using the Azure Active Directory admin center.</span></span>
 
-1. <span data-ttu-id="600c6-102">Ouvrez un navigateur et accédez au [portail d'inscription des applications](https://apps.dev.microsoft.com).</span><span class="sxs-lookup"><span data-stu-id="600c6-102">Open a browser and navigate to the [Application Registration Portal](https://apps.dev.microsoft.com).</span></span> <span data-ttu-id="600c6-103">Connectez-vous à l'aide d'un compte **personnel** (alias Microsoft) ou **compte professionnel ou scolaire**.</span><span class="sxs-lookup"><span data-stu-id="600c6-103">Login using a **personal account** (aka: Microsoft Account) or **Work or School Account**.</span></span>
+1. <span data-ttu-id="c247b-102">Ouvrez un navigateur et accédez au [Centre d'administration Azure Active Directory](https://aad.portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="c247b-102">Open a browser and navigate to the [Azure Active Directory admin center](https://aad.portal.azure.com).</span></span> <span data-ttu-id="c247b-103">Connectez-vous à l'aide d'un compte **personnel** (alias Microsoft) ou **compte professionnel ou scolaire**.</span><span class="sxs-lookup"><span data-stu-id="c247b-103">Login using a **personal account** (aka: Microsoft Account) or **Work or School Account**.</span></span>
 
-1. <span data-ttu-id="600c6-104">Sélectionnez **Ajouter une application** en haut de la page.</span><span class="sxs-lookup"><span data-stu-id="600c6-104">Select **Add an app** at the top of the page.</span></span>
+1. <span data-ttu-id="c247b-104">Sélectionnez **Azure Active Directory** dans le volet de navigation de gauche, puis sélectionnez **inscriptions des applications (aperçu)** sous **gérer**.</span><span class="sxs-lookup"><span data-stu-id="c247b-104">Select **Azure Active Directory** in the left-hand navigation, then select **App registrations (Preview)** under **Manage**.</span></span>
 
-    > [!NOTE]
-    > <span data-ttu-id="600c6-105">Si vous voyez plus d'un bouton **Ajouter une application** sur la page, sélectionnez celui qui correspond à la liste **applications** convergées.</span><span class="sxs-lookup"><span data-stu-id="600c6-105">If you see more than one **Add an app** button on the page, select the one that corresponds to the **Converged apps** list.</span></span>
+    ![<span data-ttu-id="c247b-105">Capture d'écran des inscriptions d'application</span><span class="sxs-lookup"><span data-stu-id="c247b-105">A screenshot of the App registrations</span></span> ](./images/aad-portal-app-registrations.png)
 
-1. <span data-ttu-id="600c6-106">Sur la page **inscrire votre application** , définissez le **nom** de l'application sur **Tutorial Graph Graph** et sélectionnez Create ( **créer**).</span><span class="sxs-lookup"><span data-stu-id="600c6-106">On the **Register your application** page, set the **Application Name** to **Angular Graph Tutorial** and select **Create**.</span></span>
+1. <span data-ttu-id="c247b-106">Sélectionnez **nouvelle inscription**.</span><span class="sxs-lookup"><span data-stu-id="c247b-106">Select **New registration**.</span></span> <span data-ttu-id="c247b-107">Sur la page **inscrire une application** , définissez les valeurs comme suit.</span><span class="sxs-lookup"><span data-stu-id="c247b-107">On the **Register an application** page, set the values as follows.</span></span>
 
-    ![Capture d'écran de la création d'une nouvelle application dans le site Web du portail d'inscription des applications](./images/arp-create-app-01.png)
+    - <span data-ttu-id="c247b-108">Définissez **nom** sur `Angular Graph Tutorial`.</span><span class="sxs-lookup"><span data-stu-id="c247b-108">Set **Name** to `Angular Graph Tutorial`.</span></span>
+    - <span data-ttu-id="c247b-109">Définissez les types de comptes **pris en charge** sur **les comptes de tous les comptes d'annuaire et de Microsoft personnels**.</span><span class="sxs-lookup"><span data-stu-id="c247b-109">Set **Supported account types** to **Accounts in any organizational directory and personal Microsoft accounts**.</span></span>
+    - <span data-ttu-id="c247b-110">Sous **URI**de redirection, définissez la première liste déroulante sur `Web` et définissez la `http://localhost:4200`valeur sur.</span><span class="sxs-lookup"><span data-stu-id="c247b-110">Under **Redirect URI**, set the first drop-down to `Web` and set the value to `http://localhost:4200`.</span></span>
 
-1. <span data-ttu-id="600c6-108">Sur la page **d'inscription du didacticiel de graphique angulaire** , dans la section **Propriétés** , copiez l' **ID d'application** , car vous en aurez besoin plus tard.</span><span class="sxs-lookup"><span data-stu-id="600c6-108">On the **Angular Graph Tutorial Registration** page, under the **Properties** section, copy the **Application Id** as you will need it later.</span></span>
+    ![Capture d'écran de la page inscrire une application](./images/aad-register-an-app.png)
 
-    ![Capture d'écran de l'ID de l'application nouvellement créée](./images/arp-create-app-02.png)
+1. <span data-ttu-id="c247b-112">Sélectionnez **Enregistrer**.</span><span class="sxs-lookup"><span data-stu-id="c247b-112">Choose **Register**.</span></span> <span data-ttu-id="c247b-113">Sur la page **didacticiel de graphique angulaire** , copiez la valeur de l' **ID d'application (client)** et enregistrez-la, vous en aurez besoin à l'étape suivante.</span><span class="sxs-lookup"><span data-stu-id="c247b-113">On the **Angular Graph Tutorial** page, copy the value of the **Application (client) ID** and save it, you will need it in the next step.</span></span>
 
-1. <span data-ttu-id="600c6-110">Faites déFiler \*\*\*\* vers le bas jusqu'à la section plateformes.</span><span class="sxs-lookup"><span data-stu-id="600c6-110">Scroll down to the **Platforms** section.</span></span>
+    ![Capture d'écran de l'ID d'application de la nouvelle inscription de l'application](./images/aad-application-id.png)
 
-    1. <span data-ttu-id="600c6-111">Sélectionnez **Ajouter une plateforme**.</span><span class="sxs-lookup"><span data-stu-id="600c6-111">Select **Add Platform**.</span></span>
-    1. <span data-ttu-id="600c6-112">Dans la boîte de dialogue **Ajouter une plateforme** , sélectionnez **Web**.</span><span class="sxs-lookup"><span data-stu-id="600c6-112">In the **Add Platform** dialog, select **Web**.</span></span>
+1. <span data-ttu-id="c247b-115">Sélectionnez **authentification** sous **gérer**.</span><span class="sxs-lookup"><span data-stu-id="c247b-115">Select **Authentication** under **Manage**.</span></span> <span data-ttu-id="c247b-116">Recherchez la section **Grant implicite** et activez les **jetons d'accès** et les **jetons ID**.</span><span class="sxs-lookup"><span data-stu-id="c247b-116">Locate the **Implicit grant** section and enable **Access tokens** and **ID tokens**.</span></span> <span data-ttu-id="c247b-117">Cliquez sur **Enregistrer**.</span><span class="sxs-lookup"><span data-stu-id="c247b-117">Choose **Save**.</span></span>
 
-        ![Capture d'écran création d'une plateforme pour l'application](./images/arp-create-app-03.png)
-
-    1. <span data-ttu-id="600c6-114">Dans la zone plateforme **Web** , entrez `http://localhost:4200` pour les **URL**de redirection.</span><span class="sxs-lookup"><span data-stu-id="600c6-114">In the **Web** platform box, enter `http://localhost:4200` for the **Redirect URLs**.</span></span>
-
-        ![Capture d'écran de la plateforme Web récemment ajoutée pour l'application](./images/arp-create-app-04.png)
-
-1. <span data-ttu-id="600c6-116">Faites déFiler la page jusqu'en bas et sélectionnez **Enregistrer**.</span><span class="sxs-lookup"><span data-stu-id="600c6-116">Scroll to the bottom of the page and select **Save**.</span></span>
+    ![Capture d'écran de la section Grant implicite](./images/aad-implicit-grant.png)
