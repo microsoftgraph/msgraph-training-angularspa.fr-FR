@@ -1,6 +1,6 @@
 # <a name="how-to-run-the-completed-project"></a>Exécution du projet terminé
 
-## <a name="prerequisites"></a>Conditions requises
+## <a name="prerequisites"></a>Conditions préalables
 
 Pour exécuter le projet terminé dans ce dossier, vous avez besoin des éléments suivants:
 
@@ -13,34 +13,29 @@ Si vous n'avez pas de compte Microsoft, vous disposez de deux options pour obten
 - Vous pouvez vous [inscrire pour obtenir un nouveau compte Microsoft personnel](https://signup.live.com/signup?wa=wsignin1.0&rpsnv=12&ct=1454618383&rver=6.4.6456.0&wp=MBI_SSL_SHARED&wreply=https://mail.live.com/default.aspx&id=64855&cbcxt=mai&bk=1454618383&uiflavor=web&uaid=b213a65b4fdc484382b6622b3ecaa547&mkt=E-US&lc=1033&lic=1).
 - Vous pouvez vous [inscrire au programme pour les développeurs office 365](https://developer.microsoft.com/office/dev-program) pour obtenir un abonnement gratuit à Office 365.
 
-## <a name="register-a-web-application-with-the-application-registration-portal"></a>Enregistrer une application Web avec le portail d'inscription des applications
+## <a name="register-a-web-application-with-the-azure-active-directory-admin-center"></a>Enregistrer une application Web avec le centre d'administration Azure Active Directory
 
-1. Ouvrez un navigateur et accédez au [portail d'inscription des applications](https://apps.dev.microsoft.com). Connectez-vous à l'aide d'un compte **personnel** (alias Microsoft) ou **compte professionnel ou scolaire**.
+1. Ouvrez un navigateur et accédez au [Centre d'administration Azure Active Directory](https://aad.portal.azure.com). Connectez-vous à l'aide d'un compte **personnel** (alias Microsoft) ou **compte professionnel ou scolaire**.
 
-1. Sélectionnez **Ajouter une application** en haut de la page.
+1. Sélectionnez **Azure Active Directory** dans le volet de navigation de gauche, puis sélectionnez **inscriptions des applications (aperçu)** sous **gérer**.
 
-    > **Remarque:** Si vous voyez plus d'un bouton **Ajouter une application** sur la page, sélectionnez celui qui correspond à la liste **applications** convergées.
+    ![Capture d'écran des inscriptions d'application ](/tutorial/images/aad-portal-app-registrations.png)
 
-1. Sur la page **inscrire votre application** , définissez le **nom** de l'application sur **Tutorial Graph Graph** et sélectionnez Create ( **créer**).
+1. Sélectionnez **nouvelle inscription**. Sur la page **inscrire une application** , définissez les valeurs comme suit.
 
-    ![Capture d'écran de la création d'une nouvelle application dans le site Web du portail d'inscription des applications](/tutorial/images/arp-create-app-01.png)
+    - Définissez **nom** sur `Angular Graph Tutorial`.
+    - Définissez les types de comptes **pris en charge** sur **les comptes de tous les comptes d'annuaire et de Microsoft personnels**.
+    - Sous **URI**de redirection, définissez la première liste déroulante sur `Web` et définissez la `http://localhost:4200`valeur sur.
 
-1. Sur la page **d'inscription du didacticiel de graphique angulaire** , dans la section **Propriétés** , copiez l' **ID d'application** , car vous en aurez besoin plus tard.
+    ![Capture d'écran de la page inscrire une application](/tutorial/images/aad-register-an-app.png)
 
-    ![Capture d'écran de l'ID de l'application nouvellement créée](/tutorial/images/arp-create-app-02.png)
+1. Sélectionnez **Enregistrer**. Sur la page **didacticiel de graphique angulaire** , copiez la valeur de l' **ID d'application (client)** et enregistrez-la, vous en aurez besoin à l'étape suivante.
 
-1. Faites déFiler **** vers le bas jusqu'à la section plateformes.
+    ![Capture d'écran de l'ID d'application de la nouvelle inscription de l'application](/tutorial/images/aad-application-id.png)
 
-    1. Sélectionnez **Ajouter une plateforme**.
-    1. Dans la boîte de dialogue **Ajouter une plateforme** , sélectionnez **Web**.
+1. Sélectionnez **authentification** sous **gérer**. Recherchez la section **Grant implicite** et activez les **jetons d'accès** et les **jetons ID**. Cliquez sur **Enregistrer**.
 
-        ![Capture d'écran création d'une plateforme pour l'application](/tutorial/images/arp-create-app-03.png)
-
-    1. Dans la zone plateforme **Web** , entrez l'URL `http://localhost:4200` de l'URL de redirection. ****
-
-        ![Capture d'écran de la plateforme Web récemment ajoutée pour l'application](/tutorial/images/arp-create-app-04.png)
-
-1. Faites déFiler la page jusqu'en bas et sélectionnez **Enregistrer**.
+    ![Capture d'écran de la section Grant implicite](/tutorial/images/aad-implicit-grant.png)
 
 ## <a name="configure-the-sample"></a>Configurer l'exemple
 
