@@ -1,6 +1,6 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-Dans cet exercice, vous allez étendre l'application de l'exercice précédent pour prendre en charge l'authentification avec Azure AD. Cela est nécessaire pour obtenir le jeton d'accès OAuth nécessaire pour appeler Microsoft Graph. Dans cette étape, vous allez intégrer la [bibliothèque d'authentification Microsoft pour les angles](https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-angular/README.md) dans l'application.
+Dans cet exercice, vous allez étendre l’application de l’exercice précédent pour prendre en charge l’authentification avec Azure AD. Cela est nécessaire pour obtenir le jeton d’accès OAuth nécessaire pour appeler Microsoft Graph. Dans cette étape, vous allez intégrer la [bibliothèque d’authentification Microsoft pour les angles](https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-angular/README.md) dans l’application.
 
 Créez un fichier dans le `./src` répertoire nommé `oauth.ts` et ajoutez le code suivant.
 
@@ -14,10 +14,10 @@ export const OAuthSettings = {
 };
 ```
 
-Remplacez `YOUR_APP_ID_HERE` par l'ID de l'application dans le portail d'inscription des applications.
+Remplacez `YOUR_APP_ID_HERE` par l’ID de l’application dans le portail d’inscription des applications.
 
 > [!IMPORTANT]
-> Si vous utilisez le contrôle de code source tel que git, il est maintenant recommandé d'exclure le `oauth.ts` fichier du contrôle de code source afin d'éviter une fuite accidentelle de votre ID d'application.
+> Si vous utilisez le contrôle de code source tel que git, il est maintenant recommandé d’exclure le `oauth.ts` fichier du contrôle de code source afin d’éviter une fuite accidentelle de votre ID d’application.
 
 Ouvrez `./src/app/app.module.ts` et ajoutez les instructions `import` suivantes en haut du fichier.
 
@@ -26,7 +26,7 @@ import { MsalModule } from '@azure/msal-angular';
 import { OAuthSettings } from '../oauth';
 ```
 
-Ajoutez ensuite le `MsalModule` au `imports` tableau à l'intérieur `@NgModule` de la déclaration et INITIALISEz-le avec l'ID de l'application.
+Ajoutez ensuite le `MsalModule` au `imports` tableau à l’intérieur `@NgModule` de la déclaration et INITIALISEz-le avec l’ID de l’application.
 
 ```TypeScript
 imports: [
@@ -42,7 +42,7 @@ imports: [
 
 ## <a name="implement-sign-in"></a>Mettre en œuvre la connexion
 
-Commencez par définir une classe `User` simple pour conserver les informations sur l'utilisateur que l'application affiche. Créez un fichier dans le `./src/app` dossier nommé `user.ts` et ajoutez le code suivant.
+Commencez par définir une classe `User` simple pour conserver les informations sur l’utilisateur que l’application affiche. Créez un fichier dans le `./src/app` dossier nommé `user.ts` et ajoutez le code suivant.
 
 ```TypeScript
 export class User {
@@ -52,7 +52,7 @@ export class User {
 }
 ```
 
-Créez maintenant un service d'authentification. En créant un service pour cela, vous pouvez facilement l'injecter dans les composants qui ont besoin d'accéder aux méthodes d'authentification. Exécutez la commande suivante dans votre interface CLI.
+Créez maintenant un service d’authentification. En créant un service pour cela, vous pouvez facilement l’injecter dans les composants qui ont besoin d’accéder aux méthodes d’authentification. Exécutez la commande suivante dans votre interface CLI.
 
 ```Shell
 ng generate service auth
@@ -121,7 +121,7 @@ export class AuthService {
 }
 ```
 
-Maintenant que vous disposez du service d'authentification, il peut être injecté dans les composants qui se connectent. Commencez par le `NavBarComponent`. Ouvrez le `./src/app/nav-bar/nav-bar.component.ts` fichier et effectuez les modifications suivantes.
+Maintenant que vous disposez du service d’authentification, il peut être injecté dans les composants qui se connectent. Commencez par le `NavBarComponent`. Ouvrez le `./src/app/nav-bar/nav-bar.component.ts` fichier et effectuez les modifications suivantes.
 
 - Ajouter `import { AuthService } from '../auth.service';` en haut du fichier.
 - Supprimez `authenticated` les `user` propriétés et de la classe, puis supprimez le code qui les `ngOnInit`définit.
@@ -188,8 +188,8 @@ export class NavBarComponent implements OnInit {
 
 Mettez à jour `HomeComponent` la classe. Apportez les mêmes modifications `./src/app/home/home.component.ts` que celles que vous avez apportées `NavBarComponent` à la classe avec les exceptions suivantes.
 
-- Il n'existe `signOut` pas de méthode `HomeComponent` dans la classe.
-- Remplacez la `signIn` méthode par une version légèrement différente. Ce code appelle `getAccessToken` pour obtenir un jeton d'accès, qui, pour le moment, génère le jeton en tant qu'erreur.
+- Il n’existe `signOut` pas de méthode `HomeComponent` dans la classe.
+- Remplacez la `signIn` méthode par une version légèrement différente. Ce code appelle `getAccessToken` pour obtenir un jeton d’accès, qui, pour le moment, génère le jeton en tant qu’erreur.
 
     ```TypeScript
     async signIn(): Promise<void> {
@@ -233,11 +233,11 @@ export class HomeComponent implements OnInit {
 
 Enfin, effectuez les mêmes remplacements que ceux `./src/app/home/home.component.html` de la barre de navigation.
 
-Enregistrez vos modifications et actualisez le navigateur. Cliquez sur le bouton **cliquez ici pour vous connecter** et vous devez être redirigé vers `https://login.microsoftonline.com`. Connectez-vous avec votre compte Microsoft et acceptez les autorisations demandées. La page de l'application doit être actualisée, affichant le jeton.
+Enregistrez vos modifications et actualisez le navigateur. Cliquez sur le bouton **cliquez ici pour vous connecter** et vous devez être redirigé vers `https://login.microsoftonline.com`. Connectez-vous avec votre compte Microsoft et acceptez les autorisations demandées. La page de l’application doit être actualisée, affichant le jeton.
 
-### <a name="get-user-details"></a>Obtenir les détails de l'utilisateur
+### <a name="get-user-details"></a>Obtenir les détails de l’utilisateur
 
-Actuellement, le service d'authentification définit des valeurs constantes pour le nom d'affichage et l'adresse de messagerie de l'utilisateur. Maintenant que vous disposez d'un jeton d'accès, vous pouvez obtenir les détails de l'utilisateur à partir de Microsoft Graph pour que ces valeurs correspondent à l'utilisateur actuel. Ouvrez `./src/app/auth.service.ts` et ajoutez l'instruction `import` suivante en haut du fichier.
+Actuellement, le service d’authentification définit des valeurs constantes pour le nom d’affichage et l’adresse de messagerie de l’utilisateur. Maintenant que vous disposez d’un jeton d’accès, vous pouvez obtenir les détails de l’utilisateur à partir de Microsoft Graph pour que ces valeurs correspondent à l’utilisateur actuel. Ouvrez `./src/app/auth.service.ts` et ajoutez l’instruction `import` suivante en haut du fichier.
 
 ```TypeScript
 import { Client } from '@microsoft/microsoft-graph-client';
@@ -295,9 +295,9 @@ this.user.email = "AdeleV@contoso.com";
 this.user = await this.getUser();
 ```
 
-Ce nouveau code utilise le kit de développement logiciel (SDK) Microsoft Graph pour obtenir les détails `User` de l'utilisateur, puis crée un objet à l'aide des valeurs renvoyées par l'appel de l'API.
+Ce nouveau code utilise le kit de développement logiciel (SDK) Microsoft Graph pour obtenir les détails `User` de l’utilisateur, puis crée un objet à l’aide des valeurs renvoyées par l’appel de l’API.
 
-Modifiez `constructor` à présent la `AuthService` classe pour vérifier si l'utilisateur est déjà connecté et charger ses informations si c'est le cas. Remplacez le existant `constructor` par ce qui suit.
+Modifiez `constructor` à présent la `AuthService` classe pour vérifier si l’utilisateur est déjà connecté et charger ses informations si c’est le cas. Remplacez le existant `constructor` par ce qui suit.
 
 ```TypeScript
 constructor(
@@ -317,16 +317,16 @@ async signIn(): Promise<void> {
 }
 ```
 
-Maintenant, si vous enregistrez vos modifications et démarrez l'application, après vous être connecté, vous devez revenir sur la page d'accueil, mais l'interface utilisateur doit changer pour indiquer que vous êtes connecté.
+Maintenant, si vous enregistrez vos modifications et démarrez l’application, après vous être connecté, vous devez revenir sur la page d’accueil, mais l’interface utilisateur doit changer pour indiquer que vous êtes connecté.
 
-![Capture d'écran de la page d'accueil après la connexion](./images/add-aad-auth-01.png)
+![Capture d’écran de la page d’accueil après la connexion](./images/add-aad-auth-01.png)
 
-Cliquez sur Avatar de l'utilisateur dans le coin supérieur droit pour **** accéder au lien Déconnexion. Cliquez **** sur Déconnexion pour réinitialiser la session et revenir à la page d'accueil.
+Cliquez sur Avatar de l’utilisateur dans le coin supérieur droit pour **** accéder au lien Déconnexion. Cliquez **** sur Déconnexion pour réinitialiser la session et revenir à la page d’accueil.
 
-![Capture d'écran du menu déroulant avec le lien déConnexion](./images/add-aad-auth-02.png)
+![Capture d’écran du menu déroulant avec le lien Déconnexion](./images/add-aad-auth-02.png)
 
 ## <a name="storing-and-refreshing-tokens"></a>Stockage et actualisation des jetons
 
-À ce stade, votre application a un jeton d'accès, qui est envoyé `Authorization` dans l'en-tête des appels d'API. Il s'agit du jeton qui permet à l'application d'accéder à Microsoft Graph pour le compte de l'utilisateur.
+À ce stade, votre application a un jeton d’accès, qui est envoyé `Authorization` dans l’en-tête des appels d’API. Il s’agit du jeton qui permet à l’application d’accéder à Microsoft Graph pour le compte de l’utilisateur.
 
-Toutefois, ce jeton est éphémère. Le jeton expire une heure après son émission. Étant donné que l'application utilise la bibliothèque MSAL, vous n'avez pas besoin d'implémenter de logique d'actualisation ou de stockage de jetons. Le `MsalService` jeton est mis en cache dans le stockage du navigateur. La `acquireTokenSilent` méthode vérifie d'abord le jeton mis en cache et, s'il n'a pas expiré, il le renvoie. Si elle a expiré, elle effectue une demande silencieuse pour en obtenir une nouvelle.
+Toutefois, ce jeton est éphémère. Le jeton expire une heure après son émission. Étant donné que l’application utilise la bibliothèque MSAL, vous n’avez pas besoin d’implémenter de logique d’actualisation ou de stockage de jetons. Le `MsalService` jeton est mis en cache dans le stockage du navigateur. La `acquireTokenSilent` méthode vérifie d’abord le jeton mis en cache et, s’il n’a pas expiré, il le renvoie. Si elle a expiré, elle effectue une demande silencieuse pour en obtenir une nouvelle.

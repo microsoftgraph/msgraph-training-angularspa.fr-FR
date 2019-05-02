@@ -1,10 +1,10 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-Dans cet exercice, vous allez incorporer Microsoft Graph dans l'application. Pour cette application, vous allez utiliser la bibliothèque [Microsoft-Graph-client](https://github.com/microsoftgraph/msgraph-sdk-javascript) pour passer des appels à Microsoft Graph.
+Dans cet exercice, vous allez incorporer Microsoft Graph dans l’application. Pour cette application, vous allez utiliser la bibliothèque [Microsoft-Graph-client](https://github.com/microsoftgraph/msgraph-sdk-javascript) pour passer des appels à Microsoft Graph.
 
-## <a name="get-calendar-events-from-outlook"></a>Obtenir des événements de calendrier à partir d'Outlook
+## <a name="get-calendar-events-from-outlook"></a>Obtenir des événements de calendrier à partir d’Outlook
 
-Commencez par créer une `Event` classe qui définit les champs que l'application affichera. Créez un fichier dans le `./src/app` répertoire appelé `event.ts` et ajoutez le code suivant.
+Commencez par créer une `Event` classe qui définit les champs que l’application affichera. Créez un fichier dans le `./src/app` répertoire appelé `event.ts` et ajoutez le code suivant.
 
 ```TypeScript
 // For a full list of fields, see
@@ -34,7 +34,7 @@ export class DateTimeTimeZone {
 }
 ```
 
-Ensuite, ajoutez un nouveau service qui contiendra tous vos appels Graph. Tout comme avec le service d'authentification que vous avez créé précédemment, la création d'un service pour cela vous permet de l'injecter dans tous les composants qui ont besoin d'accéder à Microsoft Graph. Exécutez la commande suivante dans votre interface CLI.
+Ensuite, ajoutez un nouveau service qui contiendra tous vos appels Graph. Tout comme avec le service d’authentification que vous avez créé précédemment, la création d’un service pour cela vous permet de l’injecter dans tous les composants qui ont besoin d’accéder à Microsoft Graph. Exécutez la commande suivante dans votre interface CLI.
 
 ```Shell
 ng generate service graph
@@ -99,11 +99,11 @@ Examinez ce que fait ce code.
 
 - Il initialise un client Graph dans le constructeur pour le service.
 - Elle implémente une `getEvents` fonction qui utilise le client Graph de la manière suivante:
-  - L'URL qui sera appelée est `/me/events`.
-  - La `select` méthode limite les champs renvoyés pour chaque événement à ceux que l'affichage utilise réellement.
-  - La `orderby` méthode trie les résultats en fonction de la date et de l'heure de leur création, avec l'élément le plus récent en premier.
+  - L’URL qui sera appelée est `/me/events`.
+  - La `select` méthode limite les champs renvoyés pour chaque événement à ceux que l’affichage utilise réellement.
+  - La `orderby` méthode trie les résultats en fonction de la date et de l’heure de leur création, avec l’élément le plus récent en premier.
 
-À présent, créez un composant angulaire pour appeler cette nouvelle méthode et afficher les résultats de l'appel. Exécutez la commande suivante dans votre interface CLI.
+À présent, créez un composant angulaire pour appeler cette nouvelle méthode et afficher les résultats de l’appel. Exécutez la commande suivante dans votre interface CLI.
 
 ```Shell
 ng generate component calendar
@@ -154,11 +154,11 @@ export class CalendarComponent implements OnInit {
 }
 ```
 
-Pour le moment, cela restitue simplement le tableau d'événements dans JSON sur la page. Enregistrez vos modifications, puis redémarrez l’application. Connectez-vous, puis cliquez sur le lien **calendrier** dans la barre de navigation. Si tout fonctionne, vous devez voir un vidage JSON des événements sur le calendrier de l'utilisateur.
+Pour le moment, cela restitue simplement le tableau d’événements dans JSON sur la page. Enregistrez vos modifications, puis redémarrez l’application. Connectez-vous, puis cliquez sur le lien **calendrier** dans la barre de navigation. Si tout fonctionne, vous devez voir un vidage JSON des événements sur le calendrier de l’utilisateur.
 
 ## <a name="display-the-results"></a>Afficher les résultats
 
-À présent, vous pouvez `CalendarComponent` mettre à jour le composant pour afficher les événements de manière plus conviviale. Tout d'abord, supprimez le code temporaire qui ajoute une `ngOnInit` alerte à partir de la fonction. Votre fonction mise à jour doit ressembler à ce qui suit.
+À présent, vous pouvez `CalendarComponent` mettre à jour le composant pour afficher les événements de manière plus conviviale. Tout d’abord, supprimez le code temporaire qui ajoute une `ngOnInit` alerte à partir de la fonction. Votre fonction mise à jour doit ressembler à ce qui suit.
 
 ```TypeScript
 ngOnInit() {
@@ -204,6 +204,6 @@ Enfin, ouvrez le `./src/app/calendar/calendar.component.html` fichier et remplac
 </table>
 ```
 
-Cette méthode effectue une boucle dans la collection d'événements et ajoute une ligne de tableau pour chacun d'eux. Enregistrez les modifications et redémarrez l'application. Cliquez sur le lien **calendrier** et l'application doit maintenant afficher un tableau d'événements.
+Cette méthode effectue une boucle dans la collection d’événements et ajoute une ligne de tableau pour chacun d’eux. Enregistrez les modifications et redémarrez l’application. Cliquez sur le lien **calendrier** et l’application doit maintenant afficher un tableau d’événements.
 
-![Capture d'écran du tableau des événements](./images/add-msgraph-01.png)
+![Capture d’écran du tableau des événements](./images/add-msgraph-01.png)

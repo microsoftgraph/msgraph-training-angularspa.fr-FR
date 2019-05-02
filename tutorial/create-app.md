@@ -1,13 +1,13 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-Ouvrez votre interface de ligne de commande (CLI), accédez à un répertoire où vous disposez de droits pour créer des fichiers, puis exécutez les commandes suivantes pour installer l'outil [CLI angulaire](https://www.npmjs.com/package/@angular/cli) et créer une application angulaire.
+Ouvrez votre interface de ligne de commande (CLI), accédez à un répertoire où vous disposez de droits pour créer des fichiers, puis exécutez les commandes suivantes pour installer l’outil [CLI angulaire](https://www.npmjs.com/package/@angular/cli) et créer une application angulaire.
 
 ```Shell
 npm install -g @angular/cli
 ng new graph-tutorial
 ```
 
-La CLI angulaire demande davantage d'informations. Répondez aux invites comme suit.
+La CLI angulaire demande davantage d’informations. Répondez aux invites comme suit.
 
 ```Shell
 ? Would you like to add Angular routing? Yes
@@ -20,16 +20,16 @@ Une fois la commande terminée, accédez au `graph-tutorial` répertoire dans vo
 ng serve --open
 ```
 
-Votre navigateur par défaut s' [https://localhost:4200/](https://localhost:4200) ouvre avec une page d'angle par défaut. Si votre navigateur ne s'ouvre pas, ouvrez-le [https://localhost:4200/](https://localhost:4200) et accédez à pour vérifier que la nouvelle application fonctionne.
+Votre navigateur par défaut s' [https://localhost:4200/](https://localhost:4200) ouvre avec une page d’angle par défaut. Si votre navigateur ne s’ouvre pas, ouvrez-le [https://localhost:4200/](https://localhost:4200) et accédez à pour vérifier que la nouvelle application fonctionne.
 
 Avant de poursuivre, installez des packages supplémentaires que vous utiliserez plus tard:
 
 - [bootstrap](https://github.com/twbs/bootstrap) pour le style et les composants communs.
-- [GN-bootstrap](https://github.com/ng-bootstrap/ng-bootstrap) pour l'utilisation de composants bootstrap à partir d'un angle.
-- [fontawesome](https://github.com/FortAwesome/angular-fontawesome) pour utiliser des icônes fontawesome en tant qu'angles.
-- [fontawesome-SVG-Core](https://github.com/FortAwesome/Font-Awesome), [Free-Regular-SVG-Icons](https://github.com/FortAwesome/Font-Awesome)et [Free-Solid-SVG-Icons](https://github.com/FortAwesome/Font-Awesome) pour les icônes fontawesome utilisées dans l'exemple.
+- [GN-bootstrap](https://github.com/ng-bootstrap/ng-bootstrap) pour l’utilisation de composants bootstrap à partir d’un angle.
+- [fontawesome](https://github.com/FortAwesome/angular-fontawesome) pour utiliser des icônes fontawesome en tant qu’angles.
+- [fontawesome-SVG-Core](https://github.com/FortAwesome/Font-Awesome), [Free-Regular-SVG-Icons](https://github.com/FortAwesome/Font-Awesome)et [Free-Solid-SVG-Icons](https://github.com/FortAwesome/Font-Awesome) pour les icônes fontawesome utilisées dans l’exemple.
 - [moment](https://github.com/moment/moment) de mise en forme des dates et des heures.
-- [MSAL-angulaire](https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-angular/README.md) pour l'authentification auprès d'Azure Active Directory et pour la récupération des jetons d'accès.
+- [MSAL-angulaire](https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-angular/README.md) pour l’authentification auprès d’Azure Active Directory et pour la récupération des jetons d’accès.
 - [rxjs-compat](https://github.com/ReactiveX/rxjs/tree/master/compat), obligatoire pour le `msal-angular` package.
 - [Microsoft-Graph-client](https://github.com/microsoftgraph/msgraph-sdk-javascript) pour effectuer des appels à Microsoft Graph.
 
@@ -42,9 +42,9 @@ npm install moment@2.24.0 moment-timezone@0.5.23 @ng-bootstrap/ng-bootstrap@4.1.
 npm install @azure/msal-angular@0.1.2 rxjs-compat@6.4.0 @microsoft/microsoft-graph-client@1.4.0
 ```
 
-## <a name="design-the-app"></a>Concevoir l'application
+## <a name="design-the-app"></a>Concevoir l’application
 
-Commencez par ajouter les fichiers CSS de démarrage à l'application, ainsi que certains styles globaux. Ouvrez le `./src/styles.css` et ajoutez les lignes suivantes.
+Commencez par ajouter les fichiers CSS de démarrage à l’application, ainsi que certains styles globaux. Ouvrez le `./src/styles.css` et ajoutez les lignes suivantes.
 
 ```CSS
 @import "~bootstrap/dist/css/bootstrap.css";
@@ -62,7 +62,7 @@ body {
 }
 ```
 
-Ensuite, ajoutez les modules bootstrap et FontAwesome à l'application. Ouvrez `./src/app/app.module.ts` et ajoutez les instructions `import` suivantes en haut du fichier.
+Ensuite, ajoutez les modules bootstrap et FontAwesome à l’application. Ouvrez `./src/app/app.module.ts` et ajoutez les instructions `import` suivantes en haut du fichier.
 
 ```TypeScript
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -199,7 +199,7 @@ Ouvrez le `./src/app/nav-bar/nav-bar.component.html` fichier et remplacez son co
 </nav>
 ```
 
-Ensuite, créez une page d'accueil pour l'application. Exécutez la commande suivante dans votre interface CLI.
+Ensuite, créez une page d’accueil pour l’application. Exécutez la commande suivante dans votre interface CLI.
 
 ```Shell
 ng generate component home
@@ -257,7 +257,7 @@ Ouvrez ensuite le `./src/app/home/home.component.html` fichier et remplacez son 
 </div>
 ```
 
-À présent, créez un service d'alerte que l'application peut utiliser pour afficher des messages à l'utilisateur. Commencez par créer une classe `Alert` simple. Créez un fichier dans le `./src/app` répertoire nommé `alert.ts` et ajoutez le code suivant.
+À présent, créez un service d’alerte que l’application peut utiliser pour afficher des messages à l’utilisateur. Commencez par créer une classe `Alert` simple. Créez un fichier dans le `./src/app` répertoire nommé `alert.ts` et ajoutez le code suivant.
 
 ```TypeScript
 export class Alert {
@@ -337,7 +337,7 @@ Ouvrez ensuite le `./src/app/alerts/alerts.component.html` fichier et remplacez 
 </div>
 ```
 
-Maintenant que les composants de base sont définis, mettez à jour l'application pour les utiliser. Tout d'abord, `./src/app/app-routing.module.ts` Ouvrez le fichier et `const routes: Routes = [];` remplacez la ligne par le code suivant.
+Maintenant que les composants de base sont définis, mettez à jour l’application pour les utiliser. Tout d’abord, `./src/app/app-routing.module.ts` Ouvrez le fichier et `const routes: Routes = [];` remplacez la ligne par le code suivant.
 
 ```TypeScript
 import { HomeComponent } from './home/home.component';
@@ -347,7 +347,7 @@ const routes: Routes = [
 ];
 ```
 
-Ouvrez le fichier `./src/app/app.component.html` et remplacez l’intégralité de son contenu par ce qui suit :
+Ouvrez le fichier `./src/app/app.component.html` et remplacez l’intégralité de son contenu par ce qui suit.
 
 ```html
 <app-nav-bar></app-nav-bar>
@@ -357,6 +357,6 @@ Ouvrez le fichier `./src/app/app.component.html` et remplacez l’intégralité 
 </main>
 ```
 
-Enregistrez toutes vos modifications et actualisez la page. À présent, l'application doit être très différente.
+Enregistrez toutes vos modifications et actualisez la page. À présent, l’application doit être très différente.
 
-![Capture d'écran de la page d'accueil repensée](images/create-app-01.png)
+![Capture d’écran de la page d’accueil repensée](images/create-app-01.png)
