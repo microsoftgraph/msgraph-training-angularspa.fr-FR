@@ -33,7 +33,7 @@ Si vous n’avez pas de compte Microsoft, vous disposez de deux options pour obt
 
     ![Capture d’écran de l’ID d’application de la nouvelle inscription de l’application](/tutorial/images/aad-application-id.png)
 
-1. Sous **Gérer**, sélectionnez **Authentification**. Recherchez la section **Grant implicite** et activez les **jetons d’accès** et les **jetons ID**. Cliquez sur **Enregistrer**.
+1. Sous **Gérer**, sélectionnez **Authentification**. Recherchez la section **Grant implicite** et activez les **jetons d’accès** et les **jetons ID**. Choisissez **Enregistrer**.
 
     ![Capture d’écran de la section Grant implicite](/tutorial/images/aad-implicit-grant.png)
 
