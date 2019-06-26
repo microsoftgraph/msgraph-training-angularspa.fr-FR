@@ -22,10 +22,14 @@ Si vous souhaitez simplement obtenir l’exemple complet généré en suivant ce
 
 - [Projet terminé](demos/03-add-msgraph)
 
+## <a name="watch-the-module"></a>Regarder le module
+
+Ce module a été enregistré et est disponible dans le canal YouTube de développement Office: [créer une spas angulaire avec Microsoft Graph](https://youtu.be/KUPRTTOUzz8)
+
 ## <a name="contributors"></a>Collaborateurs
 
-|       Rôles       |                                     Auteur (s)                                     |
-| ----------------- | --------------------------------------------------------------------------------- |
+|       Rôles       |                                           Auteur (s)                                           |
+| ----------------- | --------------------------------------------------------------------------------------------- |
 | Code/Tutorial   | Jason Johnston (Microsoft) [@jasonjoh](//github.com/jasonjoh)                                 |
 | Diapositives            | Jeremy Thake (Microsoft) [@jthake-msft](//github.com/jthake-msft)                             |
 | QA                | Andrew Connell (MVP Microsoft, Voitanos) [@andrewconnell](//github.com/andrewconnell)         |
@@ -34,13 +38,14 @@ Si vous souhaitez simplement obtenir l’exemple complet généré en suivant ce
 
 ## <a name="version-history"></a>Historique des versions
 
-| Version |       Date       |              Comments              |
-| ------- | ---------------- | ---------------------------------- |
-| 1.4     | 24 mai 2019     | actualisation du contenu 2019Q4             |
-| 1.3     | 6 mai 2019      | Mise à jour des étapes d’inscription de l’application AAD |
-| 1.2     | 18 mars 2019   | actualisation du contenu 2019Q3             |
-| 1.1     | 8 février 2019 | Ajout de diapositives                       |
-| 1.0     | 2018             | Published                          |
+| Version |       Date       |                     Comments                     |
+| ------- | ---------------- | ------------------------------------------------ |
+| 1,5     | 18 juin 2019    | Fichier Lisez-moi mis à jour pour l’enregistrement de captures numériques |
+| 1.4     | 24 mai 2019     | actualisation du contenu 2019Q4                           |
+| 1.3     | 6 mai 2019      | Mise à jour des étapes d’inscription de l’application AAD               |
+| 1.2     | 18 mars 2019   | actualisation du contenu 2019Q3                           |
+| 1.1     | 8 février 2019 | Ajout de diapositives                                     |
+| 1.0     | 2018             | Published                                        |
 
 ## <a name="disclaimer"></a>Clause d’exclusion de responsabilité
 
