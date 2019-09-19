@@ -22,7 +22,7 @@ ng serve --open
 
 Votre navigateur par défaut s' [https://localhost:4200/](https://localhost:4200) ouvre avec une page d’angle par défaut. Si votre navigateur ne s’ouvre pas, ouvrez-le [https://localhost:4200/](https://localhost:4200) et accédez à pour vérifier que la nouvelle application fonctionne.
 
-Avant de poursuivre, installez des packages supplémentaires que vous utiliserez plus tard:
+Avant de poursuivre, installez des packages supplémentaires que vous utiliserez plus tard :
 
 - [bootstrap](https://github.com/twbs/bootstrap) pour le style et les composants communs.
 - [GN-bootstrap](https://github.com/ng-bootstrap/ng-bootstrap) pour l’utilisation de composants bootstrap à partir d’un angle.
@@ -36,10 +36,10 @@ Avant de poursuivre, installez des packages supplémentaires que vous utiliserez
 Exécutez la commande suivante dans votre interface CLI.
 
 ```Shell
-npm install bootstrap@4.3.1 @fortawesome/angular-fontawesome@0.3.0 @fortawesome/fontawesome-svg-core@1.2.17
-npm install @fortawesome/free-regular-svg-icons@5.8.1 @fortawesome/free-solid-svg-icons@5.8.1
-npm install moment@2.24.0 moment-timezone@0.5.25 @ng-bootstrap/ng-bootstrap@4.1.2
-npm install @azure/msal-angular@0.1.2 rxjs-compat@6.5.1 @microsoft/microsoft-graph-client@1.6.0
+npm install bootstrap@4.3.1 @fortawesome/angular-fontawesome@0.5.0 @fortawesome/fontawesome-svg-core@1.2.22
+npm install @fortawesome/free-regular-svg-icons@5.10.2 @fortawesome/free-solid-svg-icons@5.10.2
+npm install moment@2.24.0 moment-timezone@0.5.26 @ng-bootstrap/ng-bootstrap@5.1.1
+npm install @azure/msal-angular@0.1.2 rxjs-compat@6.5.3 @microsoft/microsoft-graph-client@1.7.0
 ```
 
 ## <a name="design-the-app"></a>Concevoir l’application
