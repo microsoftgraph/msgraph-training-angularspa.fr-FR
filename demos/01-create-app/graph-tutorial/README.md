@@ -1,6 +1,6 @@
 # <a name="graphtutorial"></a>GraphTutorial
 
-Ce projet a été généré à l’aide de la version 7.1.1 de la [CLI](https://github.com/angular/angular-cli) .
+Ce projet a été généré à l’aide de la version [CLI](https://github.com/angular/angular-cli) 8.3.20.
 
 ## <a name="development-server"></a>Serveur de développement
 

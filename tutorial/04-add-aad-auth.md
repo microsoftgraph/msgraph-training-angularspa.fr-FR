@@ -126,7 +126,7 @@ Maintenant que vous disposez du service d’authentification, il peut être inje
 - Ajouter `import { AuthService } from '../auth.service';` en haut du fichier.
 - Supprimez `authenticated` les `user` propriétés et de la classe, puis supprimez le code qui les `ngOnInit`définit.
 - Injectez `AuthService` le en ajoutant le paramètre suivant à `constructor`: `private authService: AuthService`.
-- Remplacez la méthode `signIn` existante par ce qui suit:
+- Remplacez la méthode `signIn` existante par celle-ci :
 
     ```TypeScript
     async signIn(): Promise<void> {
@@ -134,7 +134,7 @@ Maintenant que vous disposez du service d’authentification, il peut être inje
     }
     ```
 
-- Remplacez la méthode `signOut` existante par ce qui suit:
+- Remplacez la méthode `signOut` existante par celle-ci :
 
     ```TypeScript
     signOut(): void {
@@ -280,6 +280,13 @@ private async getUser(): Promise<User> {
 }
 ```
 
+Recherchez et supprimez le code suivant dans `getAccessToken` la méthode qui ajoute une alerte pour afficher le jeton d’accès.
+
+```TypeScript
+// Temporary to display token in an error box
+if (result) this.alertsService.add('Token acquired', result);
+```
+
 Recherchez et supprimez le code suivant de `signIn` la méthode.
 
 ```TypeScript
@@ -321,7 +328,7 @@ Maintenant, si vous enregistrez vos modifications et démarrez l’application, 
 
 ![Capture d’écran de la page d’accueil après la connexion](./images/add-aad-auth-01.png)
 
-Cliquez sur Avatar de l’utilisateur dans le coin supérieur droit pour **** accéder au lien Déconnexion. Cliquez **** sur Déconnexion pour réinitialiser la session et revenir à la page d’accueil.
+Cliquez sur Avatar de l’utilisateur dans le coin supérieur droit pour accéder au lien **déconnexion** . Cliquez sur **déconnexion** pour réinitialiser la session et revenir à la page d’accueil.
 
 ![Capture d’écran du menu déroulant avec le lien Déconnexion](./images/add-aad-auth-02.png)
 
