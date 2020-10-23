@@ -7,7 +7,7 @@ Ce didacticiel vous apprend à créer une application de page unique angulaire q
 
 ## <a name="prerequisites"></a>Conditions préalables
 
-Avant de commencer ce didacticiel, [node. js](https://nodejs.org) doit être installé sur votre ordinateur de développement. Si vous n’avez pas node. js, consultez le lien précédent pour obtenir les options de téléchargement.
+Avant de commencer ce didacticiel, [Node.js](https://nodejs.org) doit être installé sur votre ordinateur de développement. Si vous n’avez pas Node.js, reportez-vous au lien précédent pour obtenir les options de téléchargement.
 
 Vous devez également disposer d’un compte Microsoft personnel disposant d’une boîte aux lettres sur Outlook.com ou d’un compte professionnel ou scolaire Microsoft. Si vous n’avez pas de compte Microsoft, vous disposez de deux options pour obtenir un compte gratuit :
 
@@ -15,7 +15,7 @@ Vous devez également disposer d’un compte Microsoft personnel disposant d’u
 - Vous pouvez vous [inscrire au programme pour les développeurs office 365](https://developer.microsoft.com/office/dev-program) pour obtenir un abonnement gratuit à Office 365.
 
 > [!NOTE]
-> Ce didacticiel a été écrit avec le nœud version 12.16.1. Les étapes de ce guide peuvent fonctionner avec d’autres versions, mais cela n’a pas été testé.
+> Ce didacticiel a été écrit avec le nœud version 12.18.4. Les étapes de ce guide peuvent fonctionner avec d’autres versions, mais cela n’a pas été testé.
 
 ## <a name="watch-the-tutorial"></a>Regarder le didacticiel
 

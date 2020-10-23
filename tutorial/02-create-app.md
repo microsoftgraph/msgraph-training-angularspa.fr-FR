@@ -5,7 +5,7 @@ Dans cette section, vous allez créer un nouveau projet angulaire.
 1. Ouvrez votre interface de ligne de commande (CLI), accédez à un répertoire où vous disposez de droits pour créer des fichiers, puis exécutez les commandes suivantes pour installer l’outil [CLI angulaire](https://www.npmjs.com/package/@angular/cli) et créer une application angulaire.
 
     ```Shell
-    npm install -g @angular/cli@9.0.6
+    npm install -g @angular/cli@10.1.7
     ng new graph-tutorial
     ```
 
@@ -22,7 +22,7 @@ Dans cette section, vous allez créer un nouveau projet angulaire.
     ng serve --open
     ```
 
-1. Votre navigateur par défaut s' [https://localhost:4200/](https://localhost:4200) ouvre avec une page d’angle par défaut. Si votre navigateur ne s’ouvre pas, ouvrez-le [https://localhost:4200/](https://localhost:4200) et accédez à pour vérifier que la nouvelle application fonctionne.
+1. Votre navigateur par défaut s’ouvre [https://localhost:4200/](https://localhost:4200) avec une page d’angle par défaut. Si votre navigateur ne s’ouvre pas, ouvrez-le et accédez à [https://localhost:4200/](https://localhost:4200) pour vérifier que la nouvelle application fonctionne.
 
 ## <a name="add-node-packages"></a>Ajouter des packages de nœuds
 
@@ -30,19 +30,17 @@ Avant de poursuivre, installez des packages supplémentaires que vous utiliserez
 
 - [bootstrap](https://github.com/twbs/bootstrap) pour le style et les composants communs.
 - [GN-bootstrap](https://github.com/ng-bootstrap/ng-bootstrap) pour l’utilisation de composants bootstrap à partir d’un angle.
-- [fontawesome](https://github.com/FortAwesome/angular-fontawesome) pour utiliser des icônes fontawesome en tant qu’angles.
-- [fontawesome-SVG-Core](https://github.com/FortAwesome/Font-Awesome), [Free-Regular-SVG-Icons](https://github.com/FortAwesome/Font-Awesome)et [Free-Solid-SVG-Icons](https://github.com/FortAwesome/Font-Awesome) pour les icônes fontawesome utilisées dans l’exemple.
 - [moment](https://github.com/moment/moment) de mise en forme des dates et des heures.
+- [Windows-IANA](https://github.com/rubenillodo/windows-iana)
 - [MSAL-angulaire](https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-angular/README.md) pour l’authentification auprès d’Azure Active Directory et pour la récupération des jetons d’accès.
 - [Microsoft-Graph-client](https://github.com/microsoftgraph/msgraph-sdk-javascript) pour effectuer des appels à Microsoft Graph.
 
 1. Exécutez les commandes suivantes dans votre interface CLI.
 
     ```Shell
-    npm install bootstrap@4.4.1 @fortawesome/angular-fontawesome@0.6.0 @fortawesome/fontawesome-svg-core@1.2.27
-    npm install @fortawesome/free-regular-svg-icons@5.12.1 @fortawesome/free-solid-svg-icons@5.12.1
-    npm install moment@2.24.0 moment-timezone@0.5.28 @ng-bootstrap/ng-bootstrap@6.0.0
-    npm install msal@1.2.1 @azure/msal-angular@1.0.0-beta.4 @microsoft/microsoft-graph-client@2.0.0
+    npm install bootstrap@4.5.3 @ng-bootstrap/ng-bootstrap@7.0.0 msal@1.4.2 @azure/msal-angular@1.1.1
+    npm install moment@2.29.1 moment-timezone@0.5.31 windows-iana@4.2.1
+    npm install @microsoft/microsoft-graph-client@2.1.0 @microsoft/microsoft-graph-types@1.24.0
     ```
 
 1. Exécutez la commande suivante dans votre interface CLI pour ajouter le package de localisation angulaire (requis par le GN-bootstrap).
@@ -55,51 +53,38 @@ Avant de poursuivre, installez des packages supplémentaires que vous utiliserez
 
 Dans cette section, vous allez créer l’interface utilisateur de l’application.
 
-1. Ouvrez le `./src/styles.css` et ajoutez les lignes suivantes.
+1. Ouvrez **./SRC/styles.CSS** et ajoutez les lignes suivantes.
 
     :::code language="css" source="../demo/graph-tutorial/src/styles.css":::
 
-1. Ajoutez les modules bootstrap et FontAwesome à l’application. Ouvrez `./src/app/app.module.ts` et remplacez son contenu par ce qui suit.
+1. Ajoutez le module bootstrap à l’application. Ouvrez **./SRC/app/app.module.TS** et remplacez son contenu par ce qui suit.
 
-    ```TypeScript
+    ```typescript
     import { BrowserModule } from '@angular/platform-browser';
+    import { FormsModule } from '@angular/forms';
     import { NgModule } from '@angular/core';
     import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-    import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
-    import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
-    import { faUserCircle } from '@fortawesome/free-regular-svg-icons';
 
     import { AppRoutingModule } from './app-routing.module';
     import { AppComponent } from './app.component';
-    import { NavBarComponent } from './nav-bar/nav-bar.component';
-    import { HomeComponent } from './home/home.component';
-    import { AlertsComponent } from './alerts/alerts.component';
 
     @NgModule({
       declarations: [
-        AppComponent,
-        NavBarComponent,
-        HomeComponent,
-        AlertsComponent
+        AppComponent
       ],
       imports: [
         BrowserModule,
+        FormsModule,
         AppRoutingModule,
-        NgbModule,
-        FontAwesomeModule
+        NgbModule
       ],
       providers: [],
       bootstrap: [AppComponent]
     })
-    export class AppModule {
-      constructor(library: FaIconLibrary) {
-        // Register the FontAwesome icons used by the app
-        library.addIcons(faExternalLinkAlt, faUserCircle);
-      }
-     }
+    export class AppModule { }
     ```
 
-1. Créez un fichier dans le `./src/app` dossier nommé `user.ts` et ajoutez le code suivant.
+1. Créez un fichier dans le dossier **./SRC/App** nommé **User. TS** et ajoutez le code suivant.
 
     :::code language="typescript" source="../demo/graph-tutorial/src/app/user.ts" id="user":::
 
@@ -109,9 +94,9 @@ Dans cette section, vous allez créer l’interface utilisateur de l’applicati
     ng generate component nav-bar
     ```
 
-1. Une fois la commande terminée, ouvrez le `./src/app/nav-bar/nav-bar.component.ts` fichier et remplacez son contenu par ce qui suit.
+1. Une fois la commande terminée, ouvrez **/src/App/nav-bar/NAV-bar.Component.TS** et remplacez son contenu par ce qui suit.
 
-    ```TypeScript
+    ```typescript
     import { Component, OnInit } from '@angular/core';
 
     import { User } from '../user';
@@ -162,7 +147,7 @@ Dans cette section, vous allez créer l’interface utilisateur de l’applicati
     }
     ```
 
-1. Ouvrez le `./src/app/nav-bar/nav-bar.component.html` fichier et remplacez son contenu par ce qui suit.
+1. Ouvrez **/src/app/nav-bar/nav-bar.component.html** et remplacez son contenu par ce qui suit.
 
     :::code language="html" source="../demo/graph-tutorial/src/app/nav-bar/nav-bar.component.html" id="navHtml":::
 
@@ -172,9 +157,9 @@ Dans cette section, vous allez créer l’interface utilisateur de l’applicati
     ng generate component home
     ```
 
-1. Une fois la commande terminée, ouvrez le `./src/app/home/home.component.ts` fichier et remplacez son contenu par ce qui suit.
+1. Une fois la commande terminée, ouvrez **/src/App/Home/Home.Component.TS** et remplacez son contenu par ce qui suit.
 
-    ```TypeScript
+    ```typescript
     import { Component, OnInit } from '@angular/core';
 
     import { User } from '../user';
@@ -209,11 +194,11 @@ Dans cette section, vous allez créer l’interface utilisateur de l’applicati
     }
     ```
 
-1. Ouvrez le `./src/app/home/home.component.html` fichier et remplacez son contenu par ce qui suit.
+1. Ouvrez **/src/app/home/home.component.html** et remplacez son contenu par ce qui suit.
 
     :::code language="html" source="../demo/graph-tutorial/src/app/home/home.component.html" id="homeHtml":::
 
-1. Créez une classe `Alert` simple. Créez un fichier dans le `./src/app` répertoire nommé `alert.ts` et ajoutez le code suivant.
+1. Créez une `Alert` classe simple. Créez un fichier dans le répertoire **./SRC/App** nommé **Alert. TS** et ajoutez le code suivant.
 
     :::code language="typescript" source="../demo/graph-tutorial/src/app/alert.ts" id="alert":::
 
@@ -223,7 +208,7 @@ Dans cette section, vous allez créer l’interface utilisateur de l’applicati
     ng generate service alerts
     ```
 
-1. Ouvrez le `./src/app/alerts.service.ts` fichier et remplacez son contenu par ce qui suit.
+1. Ouvrez **./SRC/App/alerts.service.TS** et remplacez son contenu par ce qui suit.
 
     :::code language="typescript" source="../demo/graph-tutorial/src/app/alerts.service.ts" id="alertsService":::
 
@@ -233,15 +218,15 @@ Dans cette section, vous allez créer l’interface utilisateur de l’applicati
     ng generate component alerts
     ```
 
-1. Une fois la commande terminée, ouvrez le `./src/app/alerts/alerts.component.ts` fichier et remplacez son contenu par ce qui suit.
+1. Une fois la commande terminée, ouvrez **/src/App/Alerts/alerts.Component.TS** et remplacez son contenu par ce qui suit.
 
     :::code language="typescript" source="../demo/graph-tutorial/src/app/alerts/alerts.component.ts" id="alertComponent":::
 
-1. Ouvrez le `./src/app/alerts/alerts.component.html` fichier et remplacez son contenu par ce qui suit.
+1. Ouvrez **/src/app/alerts/alerts.component.html** et remplacez son contenu par ce qui suit.
 
     :::code language="html" source="../demo/graph-tutorial/src/app/alerts/alerts.component.html" id="alertHtml":::
 
-1. Ouvrez le `./src/app/app-routing.module.ts` fichier et remplacez la `const routes: Routes = [];` ligne par le code suivant.
+1. Ouvrez **./SRC/app/app-Routing.module.TS** et remplacez la `const routes: Routes = [];` ligne par le code suivant.
 
     ```typescript
     import { HomeComponent } from './home/home.component';
@@ -251,9 +236,11 @@ Dans cette section, vous allez créer l’interface utilisateur de l’applicati
     ];
     ```
 
-1. Ouvrez le fichier `./src/app/app.component.html` et remplacez l’intégralité de son contenu par ce qui suit.
+1. Ouvrez **/src/app/app.component.html** et remplacez l’intégralité de son contenu par ce qui suit.
 
     :::code language="html" source="../demo/graph-tutorial/src/app/app.component.html" id="appHtml":::
+
+1. Ajoutez un fichier image de votre choix nommé **no-profile-photo.png** dans le répertoire **./SRC/Assets** . Cette image sera utilisée comme photo de l’utilisateur lorsque l’utilisateur n’aura pas de photo dans Microsoft Graph.
 
 Enregistrez toutes vos modifications et actualisez la page. À présent, l’application doit être très différente.
 
