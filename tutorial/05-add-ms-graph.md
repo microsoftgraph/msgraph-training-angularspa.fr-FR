@@ -1,18 +1,18 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-Dans cet exercice, vous allez incorporer Microsoft Graph dans l’application. Pour cette application, vous allez utiliser la bibliothèque [Microsoft-Graph-client](https://github.com/microsoftgraph/msgraph-sdk-javascript) pour passer des appels à Microsoft Graph.
+Dans cet exercice, vous allez incorporer Microsoft Graph dans l'application. Pour cette application, vous allez utiliser la bibliothèque [cliente microsoft-graph-client](https://github.com/microsoftgraph/msgraph-sdk-javascript) pour effectuer des appels à Microsoft Graph.
 
 ## <a name="get-calendar-events-from-outlook"></a>Récupérer les événements de calendrier à partir d’Outlook
 
-1. Ajoutez un nouveau service qui contiendra tous vos appels Graph. Exécutez la commande suivante dans votre interface CLI.
+1. Ajoutez un nouveau service pour contenir tous vos appels Graph. Exécutez la commande suivante dans votre CLI.
 
     ```Shell
     ng generate service graph
     ```
 
-    Tout comme avec le service d’authentification que vous avez créé précédemment, la création d’un service pour cela vous permet de l’injecter dans tous les composants qui ont besoin d’accéder à Microsoft Graph.
+    Tout comme pour le service d'authentification que vous avez créé précédemment, la création d'un service vous permet de l'injecter dans tous les composants qui ont besoin d'accéder à Microsoft Graph.
 
-1. Une fois la commande terminée, ouvrez **/src/App/Graph.service.TS** et remplacez son contenu par ce qui suit.
+1. Une fois la commande terminée, ouvrez **./src/app/graph.service.ts** et remplacez son contenu par ce qui suit.
 
     ```typescript
     import { Injectable } from '@angular/core';
@@ -37,7 +37,7 @@ Dans cet exercice, vous allez incorporer Microsoft Graph dans l’application. P
         this.graphClient = Client.init({
           authProvider: async (done) => {
             // Get the token from the auth service
-            let token = await this.authService.getAccessToken()
+            const token = await this.authService.getAccessToken()
               .catch((reason) => {
                 done(reason, null);
               });
@@ -52,13 +52,13 @@ Dans cet exercice, vous allez incorporer Microsoft Graph dans l’application. P
         });
       }
 
-      async getCalendarView(start: string, end: string, timeZone: string): Promise<MicrosoftGraph.Event[]> {
+      async getCalendarView(start: string, end: string, timeZone: string): Promise<MicrosoftGraph.Event[] | undefined> {
         try {
           // GET /me/calendarview?startDateTime=''&endDateTime=''
           // &$select=subject,organizer,start,end
           // &$orderby=start/dateTime
           // &$top=50
-          let result =  await this.graphClient
+          const result =  await this.graphClient
             .api('/me/calendarview')
             .header('Prefer', `outlook.timezone="${timeZone}"`)
             .query({
@@ -74,43 +74,50 @@ Dans cet exercice, vous allez incorporer Microsoft Graph dans l’application. P
         } catch (error) {
           this.alertsService.addError('Could not get events', JSON.stringify(error, null, 2));
         }
+        return undefined;
       }
     }
     ```
 
     Que fait ce code ?
 
-    - Il initialise un client Graph dans le constructeur pour le service.
-    - Elle implémente une `getCalendarView` fonction qui utilise le client Graph de la manière suivante :
+    - Il initialise un client Graph dans le constructeur du service.
+    - Il implémente `getCalendarView` une fonction qui utilise le client Graph de la manière suivante :
       - L’URL qui sera appelée est `/me/calendarview`.
-      - La `header` méthode inclut l' `Prefer: outlook.timezone` en-tête, ce qui entraîne des heures de début et de fin des événements renvoyés dans le fuseau horaire préféré de l’utilisateur.
-      - La `query` méthode ajoute les `startDateTime` `endDateTime` paramètres et, définissant la fenêtre de temps pour l’affichage Calendrier.
-      - La `select` méthode limite les champs renvoyés pour chaque événement à ceux que l’affichage utilise réellement.
+      - La `header` méthode inclut l'en-tête, qui place les heures de début et de fin des événements renvoyés dans le fuseau horaire préféré de `Prefer: outlook.timezone` l'utilisateur.
+      - La méthode ajoute les paramètres et définit la fenêtre de temps `query` `startDateTime` pour `endDateTime` l'affichage Calendrier.
+      - La méthode limite les champs renvoyés pour chaque événement à ceux que `select` l'affichage utilisera réellement.
       - La `orderby` méthode trie les résultats par heure de début.
 
-1. Créez un composant angulaire pour appeler cette nouvelle méthode et afficher les résultats de l’appel. Exécutez la commande suivante dans votre interface CLI.
+1. Créez un composant Angular pour appeler cette nouvelle méthode et afficher les résultats de l'appel. Exécutez la commande suivante dans votre CLI.
 
     ```Shell
     ng generate component calendar
     ```
 
-1. Une fois la commande exécutée, ajoutez le composant au `routes` tableau dans **./SRC/app/app-Routing.module.TS**.
+1. Une fois la commande terminée, ajoutez le composant au tableau dans `routes` **./src/app/app-routing.module.ts**.
 
     ```typescript
     import { CalendarComponent } from './calendar/calendar.component';
 
     const routes: Routes = [
       { path: '', component: HomeComponent },
-      { path: 'calendar', component: CalendarComponent }
+      { path: 'calendar', component: CalendarComponent },
     ];
     ```
 
-1. Ouvrez **./SRC/App/Calendar/Calendar.Component.TS** et remplacez son contenu par ce qui suit.
+1. Ouvrez **./tsconfig.jset** ajoutez la propriété suivante à l'objet. `compilerOptions`
+
+    ```json
+    "resolveJsonModule": true
+    ```
+
+1. Ouvrez **./src/app/calendar/calendar.component.ts** et remplacez son contenu par ce qui suit.
 
     ```typescript
     import { Component, OnInit } from '@angular/core';
     import * as moment from 'moment-timezone';
-    import { findOneIana } from 'windows-iana';
+    import { findIana } from 'windows-iana';
     import * as MicrosoftGraph from '@microsoft/microsoft-graph-types';
 
     import { AuthService } from '../auth.service';
@@ -124,7 +131,7 @@ Dans cet exercice, vous allez incorporer Microsoft Graph dans l’application. P
     })
     export class CalendarComponent implements OnInit {
 
-      public events: MicrosoftGraph.Event[];
+      public events?: MicrosoftGraph.Event[];
 
       constructor(
         private authService: AuthService,
@@ -133,8 +140,8 @@ Dans cet exercice, vous allez incorporer Microsoft Graph dans l’application. P
 
       ngOnInit() {
         // Convert the user's timezone to IANA format
-        const ianaName = findOneIana(this.authService.user.timeZone);
-        const timeZone = ianaName!.valueOf() || this.authService.user.timeZone;
+        const ianaName = findIana(this.authService.user?.timeZone ?? 'UTC');
+        const timeZone = ianaName![0].valueOf() || this.authService.user?.timeZone || 'UTC';
 
         // Get midnight on the start of the current week in the user's timezone,
         // but in UTC. For example, for Pacific Standard Time, the time value would be
@@ -145,7 +152,7 @@ Dans cet exercice, vous allez incorporer Microsoft Graph dans l’application. P
         this.graphService.getCalendarView(
           startOfWeek.format(),
           endOfWeek.format(),
-          this.authService.user.timeZone)
+          this.authService.user?.timeZone ?? 'UTC')
             .then((events) => {
               this.events = events;
               // Temporary to display raw results
@@ -155,24 +162,24 @@ Dans cet exercice, vous allez incorporer Microsoft Graph dans l’application. P
     }
     ```
 
-Pour le moment, cela restitue simplement le tableau d’événements dans JSON sur la page. Enregistrez vos modifications, puis redémarrez l’application. Connectez-vous, puis cliquez sur le lien **calendrier** dans la barre de navigation. Si tout fonctionne, vous devriez voir une image mémoire JSON des événements dans le calendrier de l’utilisateur.
+Pour l'instant, cela restituera simplement le tableau des événements dans JSON sur la page. Enregistrez vos modifications, puis redémarrez l’application. Connectez-vous et cliquez **sur le lien** Calendrier dans la barre de navigation. Si tout fonctionne, vous devriez voir une image mémoire JSON des événements dans le calendrier de l’utilisateur.
 
 ## <a name="display-the-results"></a>Afficher les résultats
 
-À présent, vous pouvez mettre à jour le `CalendarComponent` composant pour afficher les événements de manière plus conviviale.
+Vous pouvez maintenant mettre à jour le composant pour afficher les événements `CalendarComponent` de manière plus conviviale.
 
-1. Supprimez le code temporaire qui ajoute une alerte à partir de la `ngOnInit` fonction. Votre fonction mise à jour doit ressembler à ce qui suit.
+1. Supprimez le code temporaire qui ajoute une alerte à partir de la `ngOnInit` fonction. Votre fonction mise à jour doit ressembler à ceci.
 
     :::code language="typescript" source="../demo/graph-tutorial/src/app/calendar/calendar.component.ts" id="ngOnInitSnippet":::
 
-1. Ajoutez une fonction à la `CalendarComponent` classe pour mettre en forme un `DateTimeTimeZone` objet dans une chaîne ISO.
+1. Ajoutez une fonction à la `CalendarComponent` classe pour mettre en forme un objet dans une chaîne `DateTimeTimeZone` ISO.
 
     :::code language="typescript" source="../demo/graph-tutorial/src/app/calendar/calendar.component.ts" id="formatDateTimeTimeZoneSnippet":::
 
-1. Ouvrez **/src/app/calendar/calendar.component.html** et remplacez son contenu par ce qui suit.
+1. Ouvrez **./src/app/calendar/calendar.component.html** et remplacez son contenu par ce qui suit.
 
     :::code language="html" source="../demo/graph-tutorial/src/app/calendar/calendar.component.html" id="calendarHtml":::
 
-Cette méthode effectue une boucle dans la collection d’événements et ajoute une ligne de tableau pour chacun d’eux. Enregistrez les modifications et redémarrez l’application. Cliquez sur le lien **calendrier** et l’application doit maintenant afficher un tableau d’événements.
+Cette opération pare la collection d'événements et ajoute une ligne de tableau pour chacun d'eux. Enregistrez les modifications et redémarrez l'application. Cliquez sur le **lien Calendrier** et l'application doit maintenant restituer une table des événements.
 
 ![Capture d’écran du tableau des événements](./images/add-msgraph-01.png)
