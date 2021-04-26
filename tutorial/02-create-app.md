@@ -1,6 +1,6 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-Dans cette section, vous allez créer un projet Angular.
+Dans cette section, vous allez créer un projet Angular projet.
 
 1. Ouvrez votre interface de ligne de commande (CLI), accédez à un répertoire dans lequel vous avez le droit de créer des fichiers, puis exécutez les commandes suivantes pour installer l'outil [CLI Angular](https://www.npmjs.com/package/@angular/cli) et créer une application Angular.
 
@@ -9,7 +9,7 @@ Dans cette section, vous allez créer un projet Angular.
     ng new graph-tutorial
     ```
 
-1. L'CLI Angular vous invite à fournir plus d'informations. Répondez aux invites comme suit.
+1. L Angular CLI vous invite à fournir plus d'informations. Répondez aux invites comme suit.
 
     ```Shell
     ? Do you want to enforce stricter type checking and stricter bundle budgets in the workspace? Yes
@@ -17,23 +17,23 @@ Dans cette section, vous allez créer un projet Angular.
     ? Which stylesheet format would you like to use? CSS
     ```
 
-1. Une fois la commande terminé, modifiez le répertoire dans votre CLI et exécutez la commande suivante pour démarrer `graph-tutorial` un serveur web local.
+1. Une fois la commande finale, modifiez le répertoire de votre CLI et exécutez la commande suivante pour démarrer `graph-tutorial` un serveur web local.
 
     ```Shell
     ng serve --open
     ```
 
-1. Votre navigateur par défaut s'ouvre [https://localhost:4200/](https://localhost:4200) avec une page Angular par défaut. Si votre navigateur ne s'ouvre pas, ouvrez-le et recherchez-le pour vérifier [https://localhost:4200/](https://localhost:4200) que la nouvelle application fonctionne.
+1. Votre navigateur par défaut s'ouvre [https://localhost:4200/](https://localhost:4200) avec une page de Angular par défaut. Si votre navigateur ne s'ouvre pas, ouvrez-le et recherchez-le pour vérifier [https://localhost:4200/](https://localhost:4200) que la nouvelle application fonctionne.
 
 ## <a name="add-node-packages"></a>Ajouter des packages de nœuds
 
 Avant de passer à la suite, installez des packages supplémentaires que vous utiliserez ultérieurement :
 
 - [bootstrap](https://github.com/twbs/bootstrap) pour les styles et les composants courants.
-- [ng-bootstrap](https://github.com/ng-bootstrap/ng-bootstrap) pour utiliser des composants Bootstrap d'Angular.
+- [ng-bootstrap](https://github.com/ng-bootstrap/ng-bootstrap) pour utiliser des composants Bootstrap à partir de Angular.
 - [moment de](https://github.com/moment/moment) mise en forme des dates et heures.
 - [windows-iana](https://github.com/rubenillodo/windows-iana)
-- [msal-angular pour](https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-angular/README.md) l'authentification auprès d'Azure Active Directory et la récupération des jetons d'accès.
+- [msal-angular](https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-angular/README.md) pour l'authentification auprès Azure Active Directory et la récupération des jetons d'accès.
 - [microsoft-graph-client pour](https://github.com/microsoftgraph/msgraph-sdk-javascript) effectuer des appels à Microsoft Graph.
 
 1. Exécutez les commandes suivantes dans votre CLI.
@@ -41,11 +41,11 @@ Avant de passer à la suite, installez des packages supplémentaires que vous ut
     ```Shell
     npm install bootstrap@4.6.0 @ng-bootstrap/ng-bootstrap@9.1.0
     npm install @azure/msal-browser@2.14.0 @azure/msal-angular@2.0.0-beta.4
-    npm install moment-timezone@0.5.33 windows-iana@5.0.1
+    npm install moment-timezone@0.5.33 windows-iana@5.0.2
     npm install @microsoft/microsoft-graph-client@2.2.1 @microsoft/microsoft-graph-types@1.35.0
     ```
 
-1. Exécutez la commande suivante dans votre CLI pour ajouter le package de localisation Angular (requis par ng-bootstrap).
+1. Exécutez la commande suivante dans votre CLI pour ajouter Angular package de localisation (requis par ng-bootstrap).
 
     ```Shell
     ng add @angular/localize
@@ -55,7 +55,7 @@ Avant de passer à la suite, installez des packages supplémentaires que vous ut
 
 Dans cette section, vous allez créer l'interface utilisateur de l'application.
 
-1. Ouvrez **./src/styles.css et** ajoutez les lignes suivantes.
+1. Ouvrez **./src/styles.css** et ajoutez les lignes suivantes.
 
     :::code language="css" source="../demo/graph-tutorial/src/styles.css":::
 
@@ -90,7 +90,7 @@ Dans cette section, vous allez créer l'interface utilisateur de l'application.
 
     :::code language="typescript" source="../demo/graph-tutorial/src/app/user.ts" id="UserSnippet":::
 
-1. Générer un composant Angular pour la navigation supérieure sur la page. Dans votre CLI, exécutez la commande suivante.
+1. Générez un Angular pour la navigation supérieure sur la page. Dans votre CLI, exécutez la commande suivante.
 
     ```Shell
     ng generate component nav-bar
